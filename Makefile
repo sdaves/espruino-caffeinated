@@ -33,7 +33,7 @@ clearserial:
 dowrite: writecompiled writesave
 
 doopenserial:
-	miniterm.py /dev/ttyACM0
+	miniterm.py ${SERIAL}
 
 allnosave: docompile writecompiled
 
