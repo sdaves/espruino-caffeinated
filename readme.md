@@ -15,6 +15,6 @@ To comile the app, and upload it, but not save it, run:
 
 Bootloader erasing and writing commands are available in the Makefile, so poke around.
 
-All of the compiling, uploading, and saving are done when the usb cable is plugged into the "USB USER" port. All of the bootloader commands required the cable to be plugged into the "USB ST-LINK" port.
+All of the compiling, uploading, and saving require that the usb cable is plugged into the "USB USER" port. All of the bootloader commands required that the cable is plugged into the "USB ST-LINK" port.
 
 Happy coding!
