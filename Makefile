@@ -40,27 +40,29 @@ writesave:
 
 clearserial:
 	cat ${SERIAL}
+	cat ${SERIAL}
+	cat ${SERIAL}
 
 dowrite: writecompiled writesave
 
 doopenserial:
 	miniterm.py ${SERIAL}
 
-allnosave: checknotroot docompile writecompiled
+allnosave: clearserial checknotroot docompile writecompiled
 
-all: checknotroot docompile dowrite
+all: clearserial checknotroot docompile dowrite
 
 default: all
 
 checknotroot:
 ifeq (,$(wildcard bootloader))
 else
-	Error - Dont run this from the root.
+	Ran from root, stopped.
 endif
 
 ifeq (,$(wildcard bootloader.md))
 else
-	Error - Dont run this from the bootloader folder.
+	Ran from bootloader folder, stopped.
 endif
 
 .DEFAULT_GOAL=default

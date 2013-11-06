@@ -15,4 +15,12 @@ Bootloader erasing and writing commands are available in the Makefile, so poke a
 
 All of the compiling, uploading, and saving require that the usb cable is plugged into the "USB USER" port. All of the bootloader commands required that the cable is plugged into the "USB ST-LINK" port.
 
+There is currently a bug with espruino under linux. When first pluggin in the board,
+if it is connected with the "USB USER" connector, than you must run:
+
+    make clearserial
+
+for the device to boot. This bug does not effect plugging in the device via the
+"USB ST-LINK" connector.
+
 Happy coding!
