@@ -10,6 +10,8 @@ writebootloader:
 	read a #press enter to write bootloader.bin to the device
 	sudo st-flash write bootloader.bin 0x08000000
 
+cleanbootloader: erasedevice writebootloader
+
 docompile:
 	cat *.coffee | coffee -sc > compiled.js
 
@@ -54,6 +56,11 @@ checknotroot:
 ifeq (,$(wildcard bootloaders))
 else
 	Error - Dont run this from the root.
+endif
+
+ifeq (,$(wildcard bootloader.md))
+else
+	Error - Dont run this from the bootloaders folder.
 endif
 
 .DEFAULT_GOAL=default
