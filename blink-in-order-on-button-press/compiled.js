@@ -5,12 +5,9 @@
 
   BlinkInOrderDemo = (function() {
     function BlinkInOrderDemo() {
+      this.main = __bind(this.main, this);
       this.handleClick = __bind(this.handleClick, this);
       clearInterval();
-      setWatch(this.handleClick, BTN, {
-        repeat: true,
-        edge: 'rising'
-      });
     }
 
     BlinkInOrderDemo.prototype.useSeconds = 1000;
@@ -24,9 +21,6 @@
     BlinkInOrderDemo.prototype.handleClick = function() {
       var _ref;
       if (!this.ledsKeys.length) {
-        this.ledsKeys = Object.keys(this.leds);
-      }
-      if (!this.ledsKeys.length) {
         return;
       }
       if (this.currentLedsIndex > -1) {
@@ -37,6 +31,22 @@
         this.currentLedsIndex = 0;
       }
       return this.leds[this.ledsKeys[this.currentLedsIndex]].write(1);
+    };
+
+    BlinkInOrderDemo.prototype.main = function() {
+      if (!this.ledsKeys.length) {
+        this.ledsKeys = Object.keys(this.leds);
+      }
+      if (this.ledsKeys.length) {
+        setWatch(this.handleClick, BTN, {
+          repeat: true,
+          edge: 'rising'
+        });
+        return setTimeout(function() {
+          this.leds[this.ledsKeys[0]].write(1);
+          return this.currentLedsIndex = 0;
+        }, 100);
+      }
     };
 
     return BlinkInOrderDemo;
@@ -57,6 +67,7 @@
         LED4: LED4,
         LED2: LED2
       };
+      demo.main();
     }
 
     return App;

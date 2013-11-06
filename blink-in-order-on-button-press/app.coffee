@@ -1,7 +1,6 @@
 class BlinkInOrderDemo
   constructor: ->
     clearInterval()
-    setWatch @handleClick, BTN, repeat: true, edge:'rising'
 
   useSeconds: 1000
 
@@ -12,18 +11,25 @@ class BlinkInOrderDemo
   ledsKeys: []
 
   handleClick: =>
-    if not @ledsKeys.length then @ledsKeys = Object.keys @leds
-
     if not @ledsKeys.length then return
 
     if @currentLedsIndex > -1
-      @leds[@ledsKeys[@currentLedsIndex]].write(0)
+      @leds[@ledsKeys[@currentLedsIndex]].write 0
       @currentLedsIndex++
 
     if @currentLedsIndex in [@ledsKeys.length, -1]
       @currentLedsIndex = 0
 
-    @leds[@ledsKeys[@currentLedsIndex]].write(1)
+    @leds[@ledsKeys[@currentLedsIndex]].write 1
+
+  main: =>
+    if not @ledsKeys.length then @ledsKeys = Object.keys @leds
+    if @ledsKeys.length
+      setWatch @handleClick, BTN, repeat: true, edge:'rising'
+      setTimeout ->
+        @leds[@ledsKeys[0]].write 1
+        @currentLedsIndex = 0
+      , 100
 
 class App
   constructor: ->
@@ -38,5 +44,6 @@ class App
       LED4
       LED2
     }
+    demo.main()
 
 new App()
