@@ -25,7 +25,15 @@ writesave:
 	cat ${SERIAL}
 	sleep 1
 	cat ${SERIAL}
+	cat ${SERIAL}
+	cat ${SERIAL}
 	sleep 1
+	cat ${SERIAL}
+	cat ${SERIAL}
+	cat ${SERIAL}
+	sleep 1
+	cat ${SERIAL}
+	cat ${SERIAL}
 	cat ${SERIAL}
 
 clearserial:
