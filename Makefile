@@ -53,14 +53,14 @@ all: checknotroot docompile dowrite
 default: all
 
 checknotroot:
-ifeq (,$(wildcard bootloaders))
+ifeq (,$(wildcard bootloader))
 else
 	Error - Dont run this from the root.
 endif
 
 ifeq (,$(wildcard bootloader.md))
 else
-	Error - Dont run this from the bootloaders folder.
+	Error - Dont run this from the bootloader folder.
 endif
 
 .DEFAULT_GOAL=default
