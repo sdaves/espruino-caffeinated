@@ -3,11 +3,11 @@ This is a collection of espruino coffeescript demos.
 
 Tested on the STM32F3DISCOVERY, a ~ $10 development board capable of running espruino.
 
-To compile the app, upload it, and save it, from within the app folder, run:
+To compile an app, upload it, and save it, from within the app folder, run:
 
     make
 
-To comile the app, and upload it, but not save it, from within the app folder, run:
+To compile an app, and upload it, but not save it, from within the app folder, run:
 
     make allnosave
 
