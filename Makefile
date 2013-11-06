@@ -44,10 +44,17 @@ dowrite: writecompiled writesave
 doopenserial:
 	miniterm.py ${SERIAL}
 
-allnosave: docompile writecompiled
+allnosave: checknotroot docompile writecompiled
 
-all: docompile dowrite
+all: checknotroot docompile dowrite
 
 default: all
 
+checknotroot:
+ifeq (,$(wildcard bootloaders))
+else
+	Error - Dont run this from the root.
+endif
+
 .DEFAULT_GOAL=default
+
