@@ -1,15 +1,13 @@
-This is an espruino coffeescript demo.
+This is a collection of espruino coffeescript demos.
 ===
-
-This demo toggles on an off all the leds independently, based on a random seed.
 
 Tested on the STM32F3DISCOVERY, a ~ $10 development board capable of running espruino.
 
-To compile the app, upload it, and save it run:
+To compile the app, upload it, and save it, from within the app folder, run:
 
     make
 
-To comile the app, and upload it, but not save it, run:
+To comile the app, and upload it, but not save it, from within the app folder, run:
 
     make allnosave
 
