@@ -25,6 +25,12 @@ To compile an app, upload it, but not save it to the device, from an app folder,
 
     make allnosave
 
+Very useful for rapid testing where you dont care about making your changes permanent.
+
+For live development [REPL https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop] style, run:
+
+    make openserial
+
 Notes
 ---
 

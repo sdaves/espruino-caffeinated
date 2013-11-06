@@ -45,7 +45,7 @@ clearserial:
 
 dowrite: writecompiled writesave
 
-doopenserial:
+openserial:
 	miniterm.py ${SERIAL}
 
 allnosave: clearserial checknotroot docompile writecompiled
