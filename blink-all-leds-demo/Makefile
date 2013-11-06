@@ -15,6 +15,7 @@ docompile:
 
 writecompiled:
 	cat ${SERIAL}
+	echo 'reset()' > ${SERIAL}
 	echo 'echo(0)' > ${SERIAL}
 	cat compiled.js > ${SERIAL}
 	echo 'echo(1)' > ${SERIAL}
