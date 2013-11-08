@@ -3,15 +3,23 @@ class RgbLedChain
     reset()
     clearInterval()
 
-  interval: 20
+  interval: 40
 
   curLight: 0
 
   forward: true
 
-  restartLights: =>
-    console.log 'button pressed'
-    @curLight = 0
+  getRandomColor: =>
+    getLet = ->
+      String.fromCharCode Math.floor @random() * 255
+    getLet() + getLet() + getLet()
+
+  random: ->
+    randNums = Math.sin(getTime()).toString().substring(6)
+    parseFloat '0.' + randNums
+
+  buttonPressed: =>
+    @useColor = @getRandomColor()
 
   code: (codes) ->
     out = ""
@@ -19,14 +27,14 @@ class RgbLedChain
       out += String.fromCharCode val
     out
 
-  writeOnlyColor: (num, code) =>
+  writeOnlyColor: (num, code=false) =>
     out = ""
     i = -1
 
     while i < @numLeds - 1
       i++
       if i is num
-        out += code
+        out += if code then code else @useColor
       else
         out += @black
 
@@ -49,14 +57,15 @@ class RgbLedChain
         @forward = true
         @curLight += 1
       else
-        @writeOnlyColor @curLight, @code {r:20, g:10, b:15}
+        @writeOnlyColor @curLight
 
     , @interval
 
   main: =>
+    @useColor = @code {r:20, g:10, b:15}
     num = String.fromCharCode 0
     @black = num + num + num
-    setWatch @restartLights, BTN, repeat: true, edge:'rising'
+    setWatch @buttonPressed, BTN, repeat: true, edge:'rising'
     @setupSpi B5
     @doLights()
 
