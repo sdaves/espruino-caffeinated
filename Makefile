@@ -13,7 +13,7 @@ writebootloader:
 cleanbootloader: erasedevice writebootloader
 
 docompile:
-	cat *.coffee | coffee -sc > compiled.js
+	cat *.coffee | coffee -bsc > compiled.js
 
 writecompiled:
 	cat ${SERIAL}

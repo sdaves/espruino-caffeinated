@@ -9,6 +9,8 @@ class RgbLedChain
 
   forward: true
 
+  useColor: ""
+
   getRandomColor: =>
     getLet = ->
       String.fromCharCode Math.floor @random() * 255
@@ -71,8 +73,9 @@ class RgbLedChain
 
 class App
   constructor: ->
-    @demo = new RgbLedChain()
     @demo.numLeds = 50
     @demo.main()
+
+  demo: new RgbLedChain()
 
 app = new App()
