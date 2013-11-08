@@ -13,7 +13,7 @@
       clearInterval();
     }
 
-    RgbLedChain.prototype.interval = 1;
+    RgbLedChain.prototype.interval = 20;
 
     RgbLedChain.prototype.curLight = 0;
 

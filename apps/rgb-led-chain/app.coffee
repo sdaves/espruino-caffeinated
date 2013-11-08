@@ -3,7 +3,7 @@ class RgbLedChain
     reset()
     clearInterval()
 
-  interval: 1
+  interval: 20
 
   curLight: 0
 
