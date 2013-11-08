@@ -14,7 +14,7 @@ class RgbLedSmoothTransition
     r: getLet(), g: getLet(), b: getLet()
 
   random: ->
-    parseFloat '0.' + Math.sin(getTime()).toString().substring(6)
+    parseFloat '0.' + Math.sin(analogRead(A1)).toString().substring(6)
 
   buttonPressed: =>
     @useColor = r:0, g:0, b:0

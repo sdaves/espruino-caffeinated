@@ -32,7 +32,7 @@ RgbLedSmoothTransition = (function() {
   };
 
   RgbLedSmoothTransition.prototype.random = function() {
-    return parseFloat('0.' + Math.sin(getTime()).toString().substring(6));
+    return parseFloat('0.' + Math.sin(analogRead(A1)).toString().substring(6));
   };
 
   RgbLedSmoothTransition.prototype.buttonPressed = function() {
@@ -102,7 +102,7 @@ RgbLedSmoothTransition = (function() {
 
   RgbLedSmoothTransition.prototype.doLights = function() {
     setInterval(this.transitionToColor, this.interval);
-    return setTimeout(this.transitionToColor, 1);
+    return setTimeout(this.transitionToColor, this.random() * 10);
   };
 
   RgbLedSmoothTransition.prototype.main = function() {
