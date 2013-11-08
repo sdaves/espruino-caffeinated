@@ -17,6 +17,8 @@
 
     RgbLedChain.prototype.curLight = 0;
 
+    RgbLedChain.prototype.forward = true;
+
     RgbLedChain.prototype.restartLights = function() {
       console.log('button pressed');
       return this.curLight = 0;
@@ -45,7 +47,11 @@
         }
       }
       SPI1.send4bit(out, 0x1, 0x3);
-      return this.curLight += 1;
+      if (this.forward) {
+        return this.curLight += 1;
+      } else {
+        return this.curLight -= 1;
+      }
     };
 
     RgbLedChain.prototype.setupSpi = function(pin) {
@@ -57,14 +63,18 @@
 
     RgbLedChain.prototype.doLights = function() {
       return setInterval(function() {
-        if (this.curLight < this.numLeds) {
+        if (this.curLight === this.numLeds + 1) {
+          this.forward = false;
+          return this.curLight -= 1;
+        } else if (this.curLight < 0) {
+          this.forward = true;
+          return this.curLight += 1;
+        } else {
           return this.writeOnlyColor(this.curLight, this.code({
             r: 20,
             g: 10,
             b: 15
           }));
-        } else {
-          return this.writeOnlyColor(this.curLight, this.black);
         }
       }, this.interval);
     };

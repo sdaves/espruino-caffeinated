@@ -7,6 +7,8 @@ class RgbLedChain
 
   curLight: 0
 
+  forward: true
+
   restartLights: =>
     console.log 'button pressed'
     @curLight = 0
@@ -29,17 +31,26 @@ class RgbLedChain
         out += @black
 
     SPI1.send4bit out, 0b0001, 0b0011
-    @curLight += 1
+    if @forward
+      @curLight += 1
+    else
+      @curLight -= 1
 
   setupSpi: (pin) ->
     SPI1.setup baud: 3200000, mosi: pin
 
   doLights: =>
     setInterval ->
-      if @curLight < @numLeds
-        @writeOnlyColor @curLight, @code {r:20, g:10, b:15}
+
+      if @curLight is @numLeds + 1
+        @forward = false
+        @curLight -= 1
+      else if @curLight < 0
+        @forward = true
+        @curLight += 1
       else
-        @writeOnlyColor @curLight, @black
+        @writeOnlyColor @curLight, @code {r:20, g:10, b:15}
+
     , @interval
 
   main: =>
